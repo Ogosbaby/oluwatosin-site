@@ -390,7 +390,7 @@ export function ConfabSection() {
     },
   ];
 
-  // Automatic sequence: Video plays -> Overlay slides in -> UGC Photo Slideshow -> Loop
+  // Automatic sequence: Video plays -> UGC Photo Slideshow -> Final Experience Slide -> Loop
   useEffect(() => {
     let timer;
 
@@ -407,7 +407,7 @@ export function ConfabSection() {
         setShowOverlay(true);
       }, 2500);
 
-      // Step 3: At 6.5s, seamlessly advance to the UGC photos slideshow (Slide 1)
+      // Step 3: At 6.5s, advance to the UGC photos slideshow (Slide 1)
       const nextSlideTimer = setTimeout(() => {
         setShowOverlay(false);
         setCurrentSlide(1);
@@ -417,11 +417,19 @@ export function ConfabSection() {
         clearTimeout(overlayTimer);
         clearTimeout(nextSlideTimer);
       };
-    } else {
+    } else if (currentSlide >= 1 && currentSlide <= moments.length) {
       // SLIDES 1 to 4: Each UGC moment photo displays for 3.5 seconds
       timer = setTimeout(() => {
-        setCurrentSlide((prev) => (prev >= moments.length ? 0 : prev + 1));
+        setCurrentSlide(currentSlide + 1);
       }, 3500);
+
+      return () => clearTimeout(timer);
+    } else if (currentSlide === moments.length + 1) {
+      // SLIDE 5: DEDICATED LAST SLIDE WITH "Experience The CONFAB" & CTA BUTTON
+      // Stays on screen for 5 seconds before looping back to the video (Slide 0)
+      timer = setTimeout(() => {
+        setCurrentSlide(0);
+      }, 5000);
 
       return () => clearTimeout(timer);
     }
@@ -567,6 +575,53 @@ export function ConfabSection() {
             </div>
           );
         })}
+
+        {/* SLIDE 5: Dedicated Last Slide with "Experience The CONFAB" & Instagram CTA */}
+        <div
+          className={`absolute inset-0 h-full w-full transition-all duration-1000 transform ${
+            currentSlide === moments.length + 1
+              ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+              : 'opacity-0 scale-105 z-0 pointer-events-none'
+          }`}
+        >
+          {/* Atmospheric Background Image */}
+          <img
+            src="/images/confab-ugc-2.jpg"
+            alt="The CONFAB Lagos"
+            className="h-full w-full object-cover transition-transform duration-1000 scale-105"
+          />
+
+          {/* Deep Dark Blue Overlay with Subtle Blur */}
+          <div className="absolute inset-0 bg-[#0A1128]/85 backdrop-blur-[3px]" />
+
+          {/* Centered High-Impact Experience Card */}
+          <div className="relative z-20 flex h-full w-full flex-col items-center justify-center px-6 text-center text-white">
+            <span className="mb-4 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-sky-400 drop-shadow-md">
+              <span className="h-[2px] w-6 bg-sky-400" />
+              Youth Empowerment Movement · 15 Years
+              <span className="h-[2px] w-6 bg-sky-400" />
+            </span>
+
+            <h2 className="font-serif text-3xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl max-w-4xl drop-shadow-2xl">
+              Experience The CONFAB
+            </h2>
+
+            <p className="mt-4 max-w-2xl text-sm sm:text-base lg:text-lg text-slate-100 drop-shadow-md leading-relaxed">
+              Convened annually since 2011 by Oluwatosin Oluwakoyejo, connecting thousands of ambitious young Africans with mentors, founders, and industry leaders.
+            </p>
+
+            <div className="mt-8 flex justify-center">
+              <a
+                href="https://www.instagram.com/confab_global/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 rounded-none bg-sky-500 px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] text-slate-950 transition-all duration-300 hover:bg-sky-400 hover:scale-105 active:scale-95 shadow-2xl"
+              >
+                <Instagram size={18} /> Learn More on Instagram
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
