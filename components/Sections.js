@@ -402,26 +402,26 @@ export function ConfabSection() {
         videoRef.current.play().catch(() => { });
       }
 
-      // Step 2: Towards the end of the video clip (at 2.5s), overlay text slides in
+      // Step 2: Towards the end of the video clip (at 2s), overlay text slides in
       const overlayTimer = setTimeout(() => {
         setShowOverlay(true);
-      }, 2500);
+      }, 2000);
 
-      // Step 3: At 6.5s, advance to the UGC photos slideshow (Slide 1)
+      // Step 3: At 4.5s, advance to the UGC photos slideshow (Slide 1)
       const nextSlideTimer = setTimeout(() => {
         setShowOverlay(false);
         setCurrentSlide(1);
-      }, 6500);
+      }, 4500);
 
       return () => {
         clearTimeout(overlayTimer);
         clearTimeout(nextSlideTimer);
       };
     } else if (currentSlide >= 1 && currentSlide <= moments.length) {
-      // SLIDES 1 to 4: Each UGC moment photo displays for 3.5 seconds
+      // SLIDES 1 to 4: Each UGC moment photo displays for 2.5 seconds
       timer = setTimeout(() => {
         setCurrentSlide(currentSlide + 1);
-      }, 3500);
+      }, 2500);
 
       return () => clearTimeout(timer);
     } else if (currentSlide === moments.length + 1) {
@@ -621,6 +621,25 @@ export function ConfabSection() {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Interactive Slide Navigation Bar: Automatic Progression with Instant One-Click Jump */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 sm:gap-2">
+          {['Reel Video', 'Moment 01', 'Moment 02', 'Moment 03', 'Moment 04', 'Experience CONFAB'].map((label, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => setCurrentSlide(idx)}
+              aria-label={`Jump to slide: ${label}`}
+              className={`rounded-full px-2.5 py-1 sm:px-3 sm:py-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all duration-300 ${
+                currentSlide === idx
+                  ? 'bg-sky-400 text-slate-950 shadow-lg scale-105'
+                  : 'bg-black/60 text-slate-300 hover:bg-black/90 hover:text-white backdrop-blur-md border border-white/15'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </div>
     </section>
