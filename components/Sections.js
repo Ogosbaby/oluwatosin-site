@@ -349,11 +349,10 @@ export function ChroniclesEcosystemSection() {
   );
 }
 
-/* 4. THE CONFAB UNIFIED CINEMATIC SLIDESHOW (Video + Moments from the Movement) */
+/* 4. THE CONFAB UNIFIED CINEMATIC SLIDESHOW (Video + UGC Moments from the Movement) */
 export function ConfabSection() {
   const [currentSlide, setCurrentSlide] = useState(0); // 0 = Video, 1-4 = UGC Images
   const [showOverlay, setShowOverlay] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef(null);
 
   const moments = [
@@ -391,185 +390,183 @@ export function ConfabSection() {
     },
   ];
 
-  // Control playback & timed overlay slide-in
+  // Automatic sequence: Video plays -> Overlay slides in -> UGC Photo Slideshow -> Loop
   useEffect(() => {
+    let timer;
+
     if (currentSlide === 0) {
+      // Step 1: Video starts clean
       setShowOverlay(false);
       if (videoRef.current) {
         videoRef.current.currentTime = 0;
         videoRef.current.play().catch(() => { });
       }
-      // Video plays cleanly first; towards the end of the video clip (at 2.5s), the overlay text slides in
+
+      // Step 2: Towards the end of the video clip (at 2.5s), overlay text slides in
       const overlayTimer = setTimeout(() => {
         setShowOverlay(true);
       }, 2500);
 
-      return () => clearTimeout(overlayTimer);
-    }
-  }, [currentSlide]);
-
-  // When overlay is visible on video slide, keep it displayed for 5s, then advance to photo slides
-  useEffect(() => {
-    if (currentSlide === 0 && showOverlay && !isHovered) {
-      const advanceTimer = setTimeout(() => {
-        setCurrentSlide(1);
+      // Step 3: At 6.5s, seamlessly advance to the UGC photos slideshow (Slide 1)
+      const nextSlideTimer = setTimeout(() => {
         setShowOverlay(false);
-      }, 5000);
+        setCurrentSlide(1);
+      }, 6500);
 
-      return () => clearTimeout(advanceTimer);
-    }
-  }, [currentSlide, showOverlay, isHovered]);
-
-  // Photo slides transition automatically every 4 seconds
-  useEffect(() => {
-    if (currentSlide > 0 && !isHovered) {
-      const photoTimer = setTimeout(() => {
+      return () => {
+        clearTimeout(overlayTimer);
+        clearTimeout(nextSlideTimer);
+      };
+    } else {
+      // SLIDES 1 to 4: Each UGC moment photo displays for 3.5 seconds
+      timer = setTimeout(() => {
         setCurrentSlide((prev) => (prev >= moments.length ? 0 : prev + 1));
-      }, 4000);
+      }, 3500);
 
-      return () => clearTimeout(photoTimer);
+      return () => clearTimeout(timer);
     }
-  }, [currentSlide, isHovered, moments.length]);
-
-  const handleVideoEnded = () => {
-    setShowOverlay(true);
-  };
-
-  const activeMoment = currentSlide > 0 ? moments[currentSlide - 1] : null;
+  }, [currentSlide, moments.length]);
 
   return (
     <section id="confab" className="relative border-b border-slate-200 bg-[#0A1128] text-white overflow-hidden">
       {/* Main Full-Width Cinematic Canvas */}
-      <div
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className="relative w-full min-h-[580px] sm:min-h-[660px] lg:min-h-[740px] flex items-center justify-center overflow-hidden bg-black"
-      >
+      <div className="relative w-full min-h-[580px] sm:min-h-[660px] lg:min-h-[740px] flex items-center justify-center overflow-hidden bg-black">
         {/* SLIDE 0: The CONFAB Video */}
-        {currentSlide === 0 && (
-          <div className="absolute inset-0 h-full w-full">
-            <video
-              ref={videoRef}
-              autoPlay
-              muted
-              playsInline
-              onEnded={handleVideoEnded}
-              className="h-full w-full object-cover pointer-events-none transition-all duration-700"
-            >
-              <source src="/videos/confab-reel.mp4" type="video/mp4" />
-            </video>
+        <div
+          className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ${
+            currentSlide === 0 ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
+          }`}
+        >
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+            className="h-full w-full object-cover pointer-events-none transition-all duration-700"
+          >
+            <source src="/videos/confab-reel.mp4" type="video/mp4" />
+          </video>
 
-            {/* Subtle Gradient Backdrop that deepens when overlay text slides in */}
-            <div
-              className={`absolute inset-0 transition-all duration-1000 ${
-                showOverlay ? 'bg-[#0A1128]/75 backdrop-blur-[2px]' : 'bg-[#0A1128]/25'
+          {/* Subtle Gradient Backdrop that deepens when overlay text slides in */}
+          <div
+            className={`absolute inset-0 transition-all duration-1000 ${
+              showOverlay ? 'bg-[#0A1128]/75 backdrop-blur-[2px]' : 'bg-[#0A1128]/25'
+            }`}
+          />
+
+          {/* Overlay Text that Slides In Towards the End of the Video */}
+          <div
+            className={`relative z-20 flex h-full w-full flex-col items-center justify-center px-6 text-center text-white transition-all duration-1000 ease-out transform ${
+              showOverlay
+                ? 'opacity-100 translate-y-0 scale-100'
+                : 'opacity-0 translate-y-16 scale-95 pointer-events-none'
+            }`}
+          >
+            <span
+              className={`mb-4 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-sky-400 drop-shadow-md transition-all duration-700 delay-100 transform ${
+                showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
-            />
+            >
+              <span className="h-[2px] w-6 bg-sky-400" />
+              Youth Empowerment Movement · 15 Years
+              <span className="h-[2px] w-6 bg-sky-400" />
+            </span>
 
-            {/* Overlay Text that Slides In Towards the End of the Video */}
-            <div
-              className={`relative z-20 flex h-full w-full flex-col items-center justify-center px-6 text-center text-white transition-all duration-1000 ease-out transform ${
-                showOverlay
-                  ? 'opacity-100 translate-y-0 scale-100'
-                  : 'opacity-0 translate-y-16 scale-95 pointer-events-none'
+            <h2
+              className={`font-serif text-3xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl max-w-4xl drop-shadow-2xl transition-all duration-700 delay-200 transform ${
+                showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              <span
-                className={`mb-4 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-sky-400 drop-shadow-md transition-all duration-700 delay-100 transform ${
-                  showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
-              >
-                <span className="h-[2px] w-6 bg-sky-400" />
-                Youth Empowerment Movement · 15 Years
-                <span className="h-[2px] w-6 bg-sky-400" />
-              </span>
+              Experience The CONFAB
+            </h2>
 
-              <h2
-                className={`font-serif text-3xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl max-w-4xl drop-shadow-2xl transition-all duration-700 delay-200 transform ${
-                  showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-              >
-                Experience The CONFAB
-              </h2>
+            <p
+              className={`mt-4 max-w-2xl text-sm sm:text-base lg:text-lg text-slate-100 drop-shadow-md leading-relaxed transition-all duration-700 delay-300 transform ${
+                showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+            >
+              Convened annually since 2011 by Oluwatosin Oluwakoyejo, connecting thousands of ambitious young Africans with mentors, founders, and industry leaders.
+            </p>
 
-              <p
-                className={`mt-4 max-w-2xl text-sm sm:text-base lg:text-lg text-slate-100 drop-shadow-md leading-relaxed transition-all duration-700 delay-300 transform ${
-                  showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
-              >
-                Convened annually since 2011 by Oluwatosin Oluwakoyejo, connecting thousands of ambitious young Africans with mentors, founders, and industry leaders.
-              </p>
-
-              <div
-                className={`mt-8 flex justify-center transition-all duration-700 delay-400 transform ${
-                  showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
-              >
-                <a
-                  href="https://www.instagram.com/confab_global/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 rounded-none bg-sky-500 px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] text-slate-950 transition-all duration-300 hover:bg-sky-400 hover:scale-105 active:scale-95 shadow-2xl"
-                >
-                  <Instagram size={18} /> Learn More on Instagram
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* SLIDES 1 to 4: Real Moments with Cute Corner Badges */}
-        {currentSlide > 0 && activeMoment && (
-          <div className="absolute inset-0 h-full w-full animate-in fade-in duration-700">
-            {/* Background Attendee Photo */}
-            <img
-              src={activeMoment.image}
-              alt={activeMoment.headline}
-              className="h-full w-full object-cover transition-transform duration-1000 scale-100"
-            />
-
-            {/* Soft Ambient Vignette for Corner Contrast */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128]/90 via-transparent to-[#0A1128]/60 pointer-events-none" />
-
-            {/* Corner 1: Top-Left Cute Badge */}
-            <div className="absolute top-6 left-6 sm:top-10 sm:left-10 z-20 animate-in slide-in-from-top-4 duration-500">
-              <span className="inline-flex items-center gap-2 rounded-full border border-sky-400/50 bg-[#0A1128]/85 backdrop-blur-md px-4 py-2 text-xs sm:text-sm font-semibold tracking-wide text-sky-300 shadow-2xl">
-                {activeMoment.tag}
-              </span>
-            </div>
-
-            {/* Corner 2: Top-Right Location/Context Badge */}
-            <div className="absolute top-6 right-6 sm:top-10 sm:right-10 z-20 animate-in slide-in-from-top-4 duration-500">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 backdrop-blur-md px-4 py-2 text-[11px] sm:text-xs font-mono uppercase tracking-widest text-slate-200 shadow-2xl">
-                📍 {activeMoment.cornerTopRight}
-              </span>
-            </div>
-
-            {/* Corner 3: Bottom-Left Cute Quote Card */}
-            <div className="absolute bottom-20 left-6 sm:bottom-20 sm:left-10 max-w-md sm:max-w-lg z-20 animate-in slide-in-from-bottom-4 duration-500">
-              <div className="rounded-2xl border border-white/15 bg-[#0A1128]/90 backdrop-blur-md p-5 sm:p-6 shadow-2xl">
-                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-sky-400 mb-1">
-                  {activeMoment.headline}
-                </p>
-                <p className="font-serif text-lg sm:text-xl font-light text-white leading-snug">
-                  “{activeMoment.quote}”
-                </p>
-              </div>
-            </div>
-
-            {/* Corner 4: Bottom-Right Social Pill */}
-            <div className="absolute bottom-20 right-6 sm:bottom-20 sm:right-10 z-20 animate-in slide-in-from-bottom-4 duration-500">
+            <div
+              className={`mt-8 flex justify-center transition-all duration-700 delay-400 transform ${
+                showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+              }`}
+            >
               <a
                 href="https://www.instagram.com/confab_global/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 hover:bg-sky-500 hover:text-slate-950 backdrop-blur-md px-5 py-2.5 text-xs font-bold text-sky-300 shadow-2xl transition hover:scale-105"
+                className="inline-flex items-center gap-2.5 rounded-none bg-sky-500 px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] text-slate-950 transition-all duration-300 hover:bg-sky-400 hover:scale-105 active:scale-95 shadow-2xl"
               >
-                <Instagram size={14} /> Follow @confab_global
+                <Instagram size={18} /> Learn More on Instagram
               </a>
             </div>
           </div>
-        )}
+        </div>
+
+        {/* SLIDES 1 to 4: Preloaded UGC Photo Moments with Cute Badges & Smooth Crossfades */}
+        {moments.map((moment, idx) => {
+          const isActive = currentSlide === idx + 1;
+          return (
+            <div
+              key={moment.id}
+              className={`absolute inset-0 h-full w-full transition-all duration-1000 transform ${
+                isActive
+                  ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+                  : 'opacity-0 scale-105 z-0 pointer-events-none'
+              }`}
+            >
+              {/* Background Attendee Photo */}
+              <img
+                src={moment.image}
+                alt={moment.headline}
+                className="h-full w-full object-cover transition-transform duration-1000 scale-100"
+              />
+
+              {/* Soft Ambient Vignette for Corner Contrast */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128]/90 via-transparent to-[#0A1128]/60 pointer-events-none" />
+
+              {/* Corner 1: Top-Left Cute Badge */}
+              <div className="absolute top-6 left-6 sm:top-10 sm:left-10 z-20">
+                <span className="inline-flex items-center gap-2 rounded-full border border-sky-400/50 bg-[#0A1128]/85 backdrop-blur-md px-4 py-2 text-xs sm:text-sm font-semibold tracking-wide text-sky-300 shadow-2xl">
+                  {moment.tag}
+                </span>
+              </div>
+
+              {/* Corner 2: Top-Right Location/Context Badge */}
+              <div className="absolute top-6 right-6 sm:top-10 sm:right-10 z-20">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 backdrop-blur-md px-4 py-2 text-[11px] sm:text-xs font-mono uppercase tracking-widest text-slate-200 shadow-2xl">
+                  📍 {moment.cornerTopRight}
+                </span>
+              </div>
+
+              {/* Corner 3: Bottom-Left Cute Quote Card */}
+              <div className="absolute bottom-20 left-6 sm:bottom-20 sm:left-10 max-w-md sm:max-w-lg z-20">
+                <div className="rounded-2xl border border-white/15 bg-[#0A1128]/90 backdrop-blur-md p-5 sm:p-6 shadow-2xl">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-sky-400 mb-1">
+                    {moment.headline}
+                  </p>
+                  <p className="font-serif text-lg sm:text-xl font-light text-white leading-snug">
+                    “{moment.quote}”
+                  </p>
+                </div>
+              </div>
+
+              {/* Corner 4: Bottom-Right Social Pill */}
+              <div className="absolute bottom-20 right-6 sm:bottom-20 sm:right-10 z-20">
+                <a
+                  href="https://www.instagram.com/confab_global/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 hover:bg-sky-500 hover:text-slate-950 backdrop-blur-md px-5 py-2.5 text-xs font-bold text-sky-300 shadow-2xl transition hover:scale-105"
+                >
+                  <Instagram size={14} /> Follow @confab_global
+                </a>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
