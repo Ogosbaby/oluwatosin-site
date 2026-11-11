@@ -622,25 +622,6 @@ export function ConfabSection() {
             </div>
           </div>
         </div>
-
-        {/* Interactive Slide Navigation Bar: Automatic Progression with Instant One-Click Jump */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 sm:gap-2">
-          {['Reel Video', 'Moment 01', 'Moment 02', 'Moment 03', 'Moment 04', 'Experience CONFAB'].map((label, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => setCurrentSlide(idx)}
-              aria-label={`Jump to slide: ${label}`}
-              className={`rounded-full px-2.5 py-1 sm:px-3 sm:py-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-all duration-300 ${
-                currentSlide === idx
-                  ? 'bg-sky-400 text-slate-950 shadow-lg scale-105'
-                  : 'bg-black/60 text-slate-300 hover:bg-black/90 hover:text-white backdrop-blur-md border border-white/15'
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
       </div>
     </section>
   );
