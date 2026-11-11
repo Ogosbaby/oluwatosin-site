@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none">
+  <rect width="56" height="56" y="12" rx="14" fill="#0EA5E9"/>
+  <path d="M28 22L42 30V46L28 54L14 46V30L28 22Z" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M28 22V38M42 30L28 38L14 30M28 38V54" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
+  <text x="72" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="#0F172A" letter-spacing="1">Success<tspan fill="#0EA5E9">BOX</tspan></text>
+  <text x="72" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600" fill="#64748B" letter-spacing="2">AI EXAMINATION ENGINE</text>
+</svg>
