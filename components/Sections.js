@@ -30,10 +30,10 @@ import {
   SOCIALS,
 } from '@/lib/data';
 
-/* 1. HERO SECTION - Full Width with Vertically Centered Stats & Social Icons */
+/* 1. HERO SECTION - Full Width with Vertically Centered Stats & Social Icons (Optimized for Mobile, Tablet & Desktop) */
 export function HeroSection({ onWatchVideo }) {
   return (
-    <section className="relative min-h-[460px] sm:min-h-[820px] lg:min-h-[880px] flex flex-col justify-between overflow-hidden bg-[#0A1128] text-white">
+    <section className="relative min-h-[700px] sm:min-h-[820px] lg:min-h-[880px] flex flex-col justify-between overflow-hidden bg-[#0A1128] text-white">
       {/* Full Width Background Image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -41,83 +41,83 @@ export function HeroSection({ onWatchVideo }) {
           alt="Oluwatosin Oluwakoyejo"
           className="h-full w-full object-cover object-[75%_center] lg:object-center"
         />
-        {/* Dark Blue Overlay with Reduced Transparency for High Text Visibility */}
-        <div className="absolute inset-0 bg-[#0A1128]/15 sm:bg-gradient-to-r sm:from-[#0A1128]/95 sm:via-[#0A1128]/80 sm:to-[#0A1128]/50" />
+        {/* Dark Blue Overlay: Strong protective vertical gradient on mobile/tablet, smooth horizontal gradient on desktop */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1128]/95 via-[#0A1128]/90 to-[#0A1128] sm:bg-gradient-to-r sm:from-[#0A1128]/95 sm:via-[#0A1128]/85 sm:to-[#0A1128]/40" />
       </div>
 
       {/* Text & Socials on Top */}
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-5 pt-20 pb-8 sm:px-8 sm:pt-24 sm:pb-12 lg:pt-28 flex flex-col justify-between flex-1">
+      <div className="relative z-10 mx-auto max-w-7xl w-full px-5 pt-24 pb-8 sm:px-8 sm:pt-28 sm:pb-12 lg:pt-32 flex flex-col justify-between flex-1">
         <div className="max-w-xl lg:max-w-2xl my-auto">
-          <p className="mb-4 inline-flex  gap-2 text-[11px] font-bold uppercase tracking-[0.28em] text-sky-400">
-            <span className="h-[2px] w-8 bg-sky-400" />
+          <p className="mb-4 inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.28em] text-sky-400">
+            <span className="h-[2px] w-6 sm:w-8 bg-sky-400" />
             Founder &amp; CEO · Software Architect · Convener
           </p>
 
-          <h1 className="font-serif text-4xl font-normal leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl drop-shadow-lg">
+          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal leading-[1.1] tracking-tight text-white drop-shadow-lg">
             Oluwatosin Oluwakoyejo
           </h1>
 
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-slate-100 sm:text-lg drop-shadow-md">
+          <p className="mt-4 sm:mt-5 max-w-lg text-sm sm:text-base lg:text-lg leading-relaxed text-slate-100 drop-shadow-md">
             African tech entrepreneur, software architect, and youth development champion. Dedicated to unlocking the innate genius of Africa&apos;s youth through systematic learning, educational technology, and enterprise.
           </p>
 
-          {/* Direct Social Media Icons */}
-          <div className="mt-8 flex items-center gap-3">
+          {/* Direct Social Media Icons: Responsive wrap and sizing */}
+          <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-2.5 sm:gap-3">
             <a
               href="https://www.linkedin.com/in/oluwatosin-oluwakoyejo/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
-              className="group flex h-12 w-12 items-center justify-center rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 text-sky-400 backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-500 hover:text-slate-950 shadow-xl"
+              className="group flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 text-sky-400 backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-500 hover:text-slate-950 shadow-xl"
             >
-              <Linkedin size={20} />
+              <Linkedin size={18} className="sm:w-5 sm:h-5" />
             </a>
             <a
               href="https://www.instagram.com/confab_global/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram Profile"
-              className="group flex h-12 w-12 items-center justify-center rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 text-sky-400 backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-500 hover:text-slate-950 shadow-xl"
+              className="group flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 text-sky-400 backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-500 hover:text-slate-950 shadow-xl"
             >
-              <Instagram size={20} />
+              <Instagram size={18} className="sm:w-5 sm:h-5" />
             </a>
             <a
               href="https://twitter.com/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Twitter Profile"
-              className="group flex h-12 w-12 items-center justify-center rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 text-sky-400 backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-500 hover:text-slate-950 shadow-xl"
+              className="group flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 text-sky-400 backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-500 hover:text-slate-950 shadow-xl"
             >
-              <Twitter size={20} />
+              <Twitter size={18} className="sm:w-5 sm:h-5" />
             </a>
             <a
               href="https://youtu.be/HtKqZbVGB88?si=wnwvZnFDfB4vzsOT"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="YouTube Broadcast"
-              className="group flex h-12 w-12 items-center justify-center rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 text-sky-400 backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-500 hover:text-slate-950 shadow-xl"
+              className="group flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 text-sky-400 backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-500 hover:text-slate-950 shadow-xl"
             >
-              <Youtube size={20} />
+              <Youtube size={18} className="sm:w-5 sm:h-5" />
             </a>
             <a
               href="#connect"
               aria-label="Direct Inquiry"
-              className="group flex h-12 w-12 items-center justify-center rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 text-sky-400 backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-500 hover:text-slate-950 shadow-xl"
+              className="group flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 text-sky-400 backdrop-blur transition hover:scale-110 hover:border-sky-300 hover:bg-sky-500 hover:text-slate-950 shadow-xl"
             >
-              <Mail size={20} />
+              <Mail size={18} className="sm:w-5 sm:h-5" />
             </a>
           </div>
         </div>
 
         {/* Stats Centered Vertically in Lower Section */}
-        <div className="w-full border-t border-white/20 pt-8 pb-4 my-auto">
-          <dl className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 text-center max-w-5xl mx-auto items-center">
+        <div className="w-full border-t border-white/20 pt-6 sm:pt-8 pb-2 sm:pb-4 my-auto mt-8 sm:mt-12">
+          <dl className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 lg:gap-10 text-center max-w-5xl mx-auto items-center">
             {STATS.map((s) => (
-              <div key={s.label} className="flex flex-col items-center justify-center my-auto">
-                <dt className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-white drop-shadow-md">
+              <div key={s.label} className="flex flex-col items-center justify-center my-auto p-1.5 sm:p-2">
+                <dt className="font-serif text-2xl sm:text-4xl lg:text-5xl font-light text-white drop-shadow-md">
                   {s.value}
                 </dt>
-                <dd className="mt-2 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-sky-400">
+                <dd className="mt-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-sky-400">
                   {s.label}
                 </dd>
               </div>
@@ -441,9 +441,8 @@ export function ConfabSection() {
       <div className="relative w-full min-h-[580px] sm:min-h-[660px] lg:min-h-[740px] flex items-center justify-center overflow-hidden bg-black">
         {/* SLIDE 0: The CONFAB Video */}
         <div
-          className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ${
-            currentSlide === 0 ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
-          }`}
+          className={`absolute inset-0 h-full w-full transition-opacity duration-1000 ${currentSlide === 0 ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
+            }`}
         >
           <video
             ref={videoRef}
@@ -458,7 +457,7 @@ export function ConfabSection() {
           {/* Subtle Gradient Backdrop that deepens when overlay text slides in */}
           <div
             className={`absolute inset-0 transition-all duration-1000 ${
-              showOverlay ? 'bg-[#0A1128]/75 backdrop-blur-[2px]' : 'bg-[#0A1128]/25'
+              showOverlay ? 'bg-[#0A1128]/85 backdrop-blur-[2px]' : 'bg-[#0A1128]/40'
             }`}
           />
 
@@ -471,7 +470,7 @@ export function ConfabSection() {
             }`}
           >
             <span
-              className={`mb-4 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-sky-400 drop-shadow-md transition-all duration-700 delay-100 transform ${
+              className={`mb-4 inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.3em] text-sky-400 drop-shadow-md transition-all duration-700 delay-100 transform ${
                 showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
             >
@@ -481,7 +480,7 @@ export function ConfabSection() {
             </span>
 
             <h2
-              className={`font-serif text-3xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl max-w-4xl drop-shadow-2xl transition-all duration-700 delay-200 transform ${
+              className={`font-serif text-2xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white max-w-4xl drop-shadow-2xl transition-all duration-700 delay-200 transform ${
                 showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
@@ -489,7 +488,7 @@ export function ConfabSection() {
             </h2>
 
             <p
-              className={`mt-4 max-w-2xl text-sm sm:text-base lg:text-lg text-slate-100 drop-shadow-md leading-relaxed transition-all duration-700 delay-300 transform ${
+              className={`mt-4 max-w-2xl text-xs sm:text-base lg:text-lg text-slate-100 drop-shadow-md leading-relaxed transition-all duration-700 delay-300 transform ${
                 showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
             >
@@ -497,7 +496,7 @@ export function ConfabSection() {
             </p>
 
             <div
-              className={`mt-8 flex justify-center transition-all duration-700 delay-400 transform ${
+              className={`mt-6 sm:mt-8 flex justify-center transition-all duration-700 delay-400 transform ${
                 showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
@@ -505,7 +504,7 @@ export function ConfabSection() {
                 href="https://www.instagram.com/confab_global/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 rounded-none bg-sky-500 px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] text-slate-950 transition-all duration-300 hover:bg-sky-400 hover:scale-105 active:scale-95 shadow-2xl"
+                className="inline-flex items-center gap-2.5 rounded-none bg-sky-500 px-7 sm:px-9 py-3.5 sm:py-4 text-xs font-bold uppercase tracking-[0.22em] text-slate-950 transition-all duration-300 hover:bg-sky-400 hover:scale-105 active:scale-95 shadow-2xl"
               >
                 <Instagram size={18} /> Learn More on Instagram
               </a>
@@ -533,41 +532,41 @@ export function ConfabSection() {
               />
 
               {/* Soft Ambient Vignette for Corner Contrast */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128]/90 via-transparent to-[#0A1128]/60 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128]/95 via-[#0A1128]/40 to-[#0A1128]/70 pointer-events-none" />
 
               {/* Corner 1: Top-Left Cute Badge */}
-              <div className="absolute top-6 left-6 sm:top-10 sm:left-10 z-20">
-                <span className="inline-flex items-center gap-2 rounded-full border border-sky-400/50 bg-[#0A1128]/85 backdrop-blur-md px-4 py-2 text-xs sm:text-sm font-semibold tracking-wide text-sky-300 shadow-2xl">
+              <div className="absolute top-4 left-4 sm:top-10 sm:left-10 z-20">
+                <span className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-sky-400/50 bg-[#0A1128]/85 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-sm font-semibold tracking-wide text-sky-300 shadow-2xl">
                   {moment.tag}
                 </span>
               </div>
 
               {/* Corner 2: Top-Right Location/Context Badge */}
-              <div className="absolute top-6 right-6 sm:top-10 sm:right-10 z-20">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/60 backdrop-blur-md px-4 py-2 text-[11px] sm:text-xs font-mono uppercase tracking-widest text-slate-200 shadow-2xl">
+              <div className="absolute top-4 right-4 sm:top-10 sm:right-10 z-20">
+                <span className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/20 bg-black/60 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-200 shadow-2xl">
                   📍 {moment.cornerTopRight}
                 </span>
               </div>
 
-              {/* Corner 3: Bottom-Left Cute Quote Card */}
-              <div className="absolute bottom-20 left-6 sm:bottom-20 sm:left-10 max-w-md sm:max-w-lg z-20">
-                <div className="rounded-2xl border border-white/15 bg-[#0A1128]/90 backdrop-blur-md p-5 sm:p-6 shadow-2xl">
+              {/* Corner 3: Bottom-Left Cute Quote Card (Responsive padding & width) */}
+              <div className="absolute bottom-16 sm:bottom-20 left-4 right-4 sm:right-auto sm:left-10 max-w-lg z-20">
+                <div className="rounded-2xl border border-white/15 bg-[#0A1128]/90 backdrop-blur-md p-4 sm:p-6 shadow-2xl">
                   <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-sky-400 mb-1">
                     {moment.headline}
                   </p>
-                  <p className="font-serif text-lg sm:text-xl font-light text-white leading-snug">
+                  <p className="font-serif text-base sm:text-xl font-light text-white leading-snug">
                     “{moment.quote}”
                   </p>
                 </div>
               </div>
 
-              {/* Corner 4: Bottom-Right Social Pill */}
-              <div className="absolute bottom-20 right-6 sm:bottom-20 sm:right-10 z-20">
+              {/* Corner 4: Bottom-Right Social Pill (Mobile responsive placement) */}
+              <div className="absolute bottom-4 sm:bottom-20 right-4 sm:right-10 z-20">
                 <a
                   href="https://www.instagram.com/confab_global/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 hover:bg-sky-500 hover:text-slate-950 backdrop-blur-md px-5 py-2.5 text-xs font-bold text-sky-300 shadow-2xl transition hover:scale-105"
+                  className="inline-flex items-center gap-2 rounded-full border border-sky-400/50 bg-[#0D1B2A]/90 hover:bg-sky-500 hover:text-slate-950 backdrop-blur-md px-4 sm:px-5 py-2 sm:py-2.5 text-[11px] sm:text-xs font-bold text-sky-300 shadow-2xl transition hover:scale-105"
                 >
                   <Instagram size={14} /> Follow @confab_global
                 </a>
@@ -596,26 +595,26 @@ export function ConfabSection() {
 
           {/* Centered High-Impact Experience Card */}
           <div className="relative z-20 flex h-full w-full flex-col items-center justify-center px-6 text-center text-white">
-            <span className="mb-4 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-sky-400 drop-shadow-md">
+            <span className="mb-4 inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.3em] text-sky-400 drop-shadow-md">
               <span className="h-[2px] w-6 bg-sky-400" />
               Youth Empowerment Movement · 15 Years
               <span className="h-[2px] w-6 bg-sky-400" />
             </span>
 
-            <h2 className="font-serif text-3xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl max-w-4xl drop-shadow-2xl">
+            <h2 className="font-serif text-2xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white max-w-4xl drop-shadow-2xl">
               Experience The CONFAB
             </h2>
 
-            <p className="mt-4 max-w-2xl text-sm sm:text-base lg:text-lg text-slate-100 drop-shadow-md leading-relaxed">
+            <p className="mt-4 max-w-2xl text-xs sm:text-base lg:text-lg text-slate-100 drop-shadow-md leading-relaxed">
               Convened annually since 2011 by Oluwatosin Oluwakoyejo, connecting thousands of ambitious young Africans with mentors, founders, and industry leaders.
             </p>
 
-            <div className="mt-8 flex justify-center">
+            <div className="mt-6 sm:mt-8 flex justify-center">
               <a
                 href="https://www.instagram.com/confab_global/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 rounded-none bg-sky-500 px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] text-slate-950 transition-all duration-300 hover:bg-sky-400 hover:scale-105 active:scale-95 shadow-2xl"
+                className="inline-flex items-center gap-2.5 rounded-none bg-sky-500 px-7 sm:px-9 py-3.5 sm:py-4 text-xs font-bold uppercase tracking-[0.22em] text-slate-950 transition-all duration-300 hover:bg-sky-400 hover:scale-105 active:scale-95 shadow-2xl"
               >
                 <Instagram size={18} /> Learn More on Instagram
               </a>
@@ -639,11 +638,8 @@ export function AriseVideoSection() {
             <span className="h-[2px] w-8 bg-sky-400" />
           </p>
           <h2 className="mt-3 font-serif text-3xl font-normal text-white sm:text-4xl">
-            Arise News Global Feature
+            Skills in A.I Prompt Engineering gives Individuals Competitive Advantage
           </h2>
-          <p className="mt-2 text-sm text-slate-300">
-            Oluwatosin Oluwakoyejo on Arise News discussing AI regulation in Nigeria, prompt engineering curricula, and educational disruption.
-          </p>
         </div>
 
         {/* Video Container with Highly Transparent Overlay and Subtitles Disabled */}
@@ -657,7 +653,7 @@ export function AriseVideoSection() {
           />
 
           {/* Highly Transparent Glass Overlay ON TOP of the Video */}
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/25 sm:bg-[#0A1128]/25 p-6 sm:p-12 text-center pointer-events-none">
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/55 sm:bg-[#0A1128]/25 p-6 sm:p-12 text-center pointer-events-none">
             <Quote size={40} className="text-sky-400 mb-4 opacity-95 drop-shadow-lg" />
 
             <blockquote className="font-serif text-xl sm:text-2xl lg:text-3xl font-light italic leading-relaxed text-white max-w-3xl drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">

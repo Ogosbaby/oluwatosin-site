@@ -24,9 +24,8 @@ export default function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-white/95 shadow-sm backdrop-blur-md' : 'bg-white'
-        } border-b border-slate-100`}
+        className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 shadow-sm backdrop-blur-md' : 'bg-white'
+          } border-b border-slate-100`}
       >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
           {/* Logo / Brand Name */}
@@ -130,7 +129,7 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                   className="font-serif text-2xl font-light tracking-wide text-white transition hover:text-sky-400"
                 >
-                  Arise News Broadcast
+                  Broadcast
                 </a>
                 <a
                   href="#connect"
