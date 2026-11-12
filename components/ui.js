@@ -1,12 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import * as Icons from 'lucide-react';
-
-export function Icon({ name, ...props }) {
-  const C = Icons[name] || Icons.Circle;
-  return <C {...props} />;
-}
+import { X } from 'lucide-react';
 
 /* Image with graceful on-brand fallback when the URL is missing/broken */
 export function SmartImage({ src, alt, className = '', fallbackLabel = 'OO' }) {
@@ -113,7 +108,7 @@ export function VideoModal({ videoId, isOpen, onClose }) {
           onClick={onClose}
           className="absolute -top-10 right-0 flex items-center gap-1 text-xs uppercase tracking-widest text-white hover:text-sky-400"
         >
-          Close <Icons.X size={18} />
+          Close <X size={18} />
         </button>
         <div className="relative aspect-video w-full">
           <iframe
