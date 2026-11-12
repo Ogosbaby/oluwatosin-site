@@ -456,7 +456,7 @@ export function ConfabSection() {
 
           {/* Subtle Gradient Backdrop that deepens when overlay text slides in */}
           <div
-            className={`absolute inset-0 transition-all duration-1000 ${showOverlay ? 'bg-[#0A1128]/25 backdrop-blur-[2px]' : 'bg-[#0A1128]/40'
+            className={`absolute inset-0 transition-all duration-1000 ${showOverlay ? 'bg-[#0A1128]/15 backdrop-blur-[2px]' : 'bg-[#0A1128]/10'
               }`}
           />
 
