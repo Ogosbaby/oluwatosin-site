@@ -456,23 +456,20 @@ export function ConfabSection() {
 
           {/* Subtle Gradient Backdrop that deepens when overlay text slides in */}
           <div
-            className={`absolute inset-0 transition-all duration-1000 ${
-              showOverlay ? 'bg-[#0A1128]/85 backdrop-blur-[2px]' : 'bg-[#0A1128]/40'
-            }`}
+            className={`absolute inset-0 transition-all duration-1000 ${showOverlay ? 'bg-[#0A1128]/85 backdrop-blur-[2px]' : 'bg-[#0A1128]/40'
+              }`}
           />
 
           {/* Overlay Text that Slides In Towards the End of the Video */}
           <div
-            className={`relative z-20 flex h-full w-full flex-col items-center justify-center px-6 text-center text-white transition-all duration-1000 ease-out transform ${
-              showOverlay
-                ? 'opacity-100 translate-y-0 scale-100'
-                : 'opacity-0 translate-y-16 scale-95 pointer-events-none'
-            }`}
+            className={`relative z-20 flex h-full w-full flex-col items-center justify-center px-6 text-center text-white transition-all duration-1000 ease-out transform ${showOverlay
+              ? 'opacity-100 translate-y-0 scale-100'
+              : 'opacity-0 translate-y-16 scale-95 pointer-events-none'
+              }`}
           >
             <span
-              className={`mb-4 inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.3em] text-sky-400 drop-shadow-md transition-all duration-700 delay-100 transform ${
-                showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
+              className={`mb-4 inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.3em] text-sky-400 drop-shadow-md transition-all duration-700 delay-100 transform ${showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                }`}
             >
               <span className="h-[2px] w-6 bg-sky-400" />
               Youth Empowerment Movement · 15 Years
@@ -480,25 +477,22 @@ export function ConfabSection() {
             </span>
 
             <h2
-              className={`font-serif text-2xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white max-w-4xl drop-shadow-2xl transition-all duration-700 delay-200 transform ${
-                showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+              className={`font-serif text-2xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white max-w-4xl drop-shadow-2xl transition-all duration-700 delay-200 transform ${showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
             >
               Experience The CONFAB
             </h2>
 
             <p
-              className={`mt-4 max-w-2xl text-xs sm:text-base lg:text-lg text-slate-100 drop-shadow-md leading-relaxed transition-all duration-700 delay-300 transform ${
-                showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
+              className={`mt-4 max-w-2xl text-xs sm:text-base lg:text-lg text-slate-100 drop-shadow-md leading-relaxed transition-all duration-700 delay-300 transform ${showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
             >
               Convened annually since 2011 by Oluwatosin Oluwakoyejo, connecting thousands of ambitious young Africans with mentors, founders, and industry leaders.
             </p>
 
             <div
-              className={`mt-6 sm:mt-8 flex justify-center transition-all duration-700 delay-400 transform ${
-                showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-              }`}
+              className={`mt-6 sm:mt-8 flex justify-center transition-all duration-700 delay-400 transform ${showOverlay ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                }`}
             >
               <a
                 href="https://www.instagram.com/confab_global/"
@@ -518,11 +512,10 @@ export function ConfabSection() {
           return (
             <div
               key={moment.id}
-              className={`absolute inset-0 h-full w-full transition-all duration-1000 transform ${
-                isActive
-                  ? 'opacity-100 scale-100 z-10 pointer-events-auto'
-                  : 'opacity-0 scale-105 z-0 pointer-events-none'
-              }`}
+              className={`absolute inset-0 h-full w-full transition-all duration-1000 transform ${isActive
+                ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+                : 'opacity-0 scale-105 z-0 pointer-events-none'
+                }`}
             >
               {/* Background Attendee Photo */}
               <img
@@ -576,51 +569,57 @@ export function ConfabSection() {
         })}
 
         {/* SLIDE 5: Dedicated Last Slide with "Experience The CONFAB" & Instagram CTA */}
+
+        {/* SLIDE 5: Experience The CONFAB */}
         <div
-          className={`absolute inset-0 h-full w-full transition-all duration-1000 transform ${
-            currentSlide === moments.length + 1
-              ? 'opacity-100 scale-100 z-10 pointer-events-auto'
-              : 'opacity-0 scale-105 z-0 pointer-events-none'
-          }`}
+          className={`absolute inset-0 h-full w-full transition-all duration-1000 ${currentSlide === moments.length + 1
+            ? 'opacity-100 scale-100 z-20 pointer-events-auto'
+            : 'opacity-0 scale-105 z-0 pointer-events-none'
+            }`}
         >
-          {/* Atmospheric Background Image */}
+          {/* Background */}
           <img
             src="/images/confab-ugc-2.jpg"
             alt="The CONFAB Lagos"
-            className="h-full w-full object-cover transition-transform duration-1000 scale-105"
+            className="absolute inset-0 h-full w-full object-cover"
           />
 
-          {/* Deep Dark Blue Overlay with Subtle Blur */}
+          {/* Dark overlay */}
           <div className="absolute inset-0 bg-[#0A1128]/85 backdrop-blur-[3px]" />
 
-          {/* Centered High-Impact Experience Card */}
-          <div className="relative z-20 flex h-full w-full flex-col items-center justify-center px-6 text-center text-white">
-            <span className="mb-4 inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.3em] text-sky-400 drop-shadow-md">
+          {/* Experience card content */}
+          <div className="absolute inset-0 z-30 flex flex-col items-center justify-center px-6 text-center text-white">
+
+            <span className="mb-4 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-sky-400">
               <span className="h-[2px] w-6 bg-sky-400" />
               Youth Empowerment Movement · 15 Years
               <span className="h-[2px] w-6 bg-sky-400" />
             </span>
 
-            <h2 className="font-serif text-2xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white max-w-4xl drop-shadow-2xl">
+            <h2 className="max-w-4xl font-serif text-3xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl">
               Experience The CONFAB
             </h2>
 
-            <p className="mt-4 max-w-2xl text-xs sm:text-base lg:text-lg text-slate-100 drop-shadow-md leading-relaxed">
-              Convened annually since 2011 by Oluwatosin Oluwakoyejo, connecting thousands of ambitious young Africans with mentors, founders, and industry leaders.
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-100 sm:text-base lg:text-lg">
+              Convened annually since 2011 by Oluwatosin Oluwakoyejo,
+              connecting thousands of ambitious young Africans with
+              mentors, founders, and industry leaders.
             </p>
 
-            <div className="mt-6 sm:mt-8 flex justify-center">
+            <div className="mt-8">
               <a
                 href="https://www.instagram.com/confab_global/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 rounded-none bg-sky-500 px-7 sm:px-9 py-3.5 sm:py-4 text-xs font-bold uppercase tracking-[0.22em] text-slate-950 transition-all duration-300 hover:bg-sky-400 hover:scale-105 active:scale-95 shadow-2xl"
+                className="inline-flex items-center gap-2.5 bg-sky-500 px-9 py-4 text-xs font-bold uppercase tracking-[0.22em] text-slate-950 transition-all duration-300 hover:bg-sky-400 hover:scale-105"
               >
-                <Instagram size={18} /> Learn More on Instagram
+                <Instagram size={18} />
+                Join the Next CONFAB
               </a>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );
